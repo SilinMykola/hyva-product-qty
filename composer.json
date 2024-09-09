@@ -1,10 +1,12 @@
 {
   "name": "biotus/module-product-qty",
   "version": "1.0.0",
-  "description": "Module adds a dinamic block on the PDP to show the product qty",
+  "description": "Module adds a dynamic block on the PDP to show the product qty",
   "type": "magento2-module",
   "require": {
-    "magento/framework": "*"
+    "magento/framework": "*",
+    "magento/module-config": "*",
+    "hyva-themes/magento2-default-theme": "*"
   },
   "autoload": {
     "files": [

@@ -2,5 +2,27 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
+        <section id="product_qty_block" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
+            <label>Product Qty Block</label>
+            <tab>hyva_themes</tab>
+            <resource>Magento_Catalog::config_catalog</resource>
+            <group id="general" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <comment>Enable Product Qty Block</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>product_qty_block/general/enable</config_path>
+                </field>
+                <field id="ttl" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>TTL time</label>
+                    <comment>TTL time for block in seconds</comment>
+                    <config_path>product_qty_block/general/ttl</config_path>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
     </system>
 </config>

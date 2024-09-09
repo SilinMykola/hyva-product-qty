@@ -1,0 +1,43 @@
+<?php
+/**  @var $block Biotus\ProductQty\Block\ProductQty */
+
+$product = $block->getProduct();
+
+?>
+<script>
+    "use strict";
+
+    function initComponent() {
+        return {
+            productQtyText: '',
+            productSku: '<?= $product->getSku()?>',
+
+            updateQty: function() {
+                window.fetch(BASE_URL + 'product_qty/get/qty' + '?form_key=' + hyva.getFormKey() + '&productSku=' + this.productSku, {
+                    method: 'POST',
+                    headers: {contentType: "application/x-www-form-urlencoded; charset=UTF-8"},
+                    body: JSON.stringify({productSku: this.productSku})
+                }).then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                }).then((response) => {
+                    this.productQtyText = 'Product Salable Qty: ' + response.qty;
+                })
+
+
+                return this.productQtyText;
+            },
+
+            init: function () {
+                setInterval(() => {
+                    this.updateQty();
+                }, 30000);
+            }
+        }
+    }
+</script>
+
+<div x-data= "initComponent()" class="product-qty-data" @private-content-loaded.window="updateQty()">
+    <p x-text="productQtyText"></p>
+</div>

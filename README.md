@@ -1,31 +1,38 @@
-The README.md file content is generated automatically, see [Magento module README.md](https://github.com/magento/devdocs/wiki/Magento-module-README.md) for more information.
-
 # Biotus_ProductQty module
 
-Module adds a dinamic block on the PDP to show the product qty
+Module adds a dynamic block on the PDP to show the product qty.
+
+Модуль добюавляет динамический блок на страницу продукта и отображает текущее количество продукта
 
 ## Installation details
 
-For information about a module installation in Magento 2, see [Enable or disable modules](https://devdocs.magento.com/guides/v2.4/install-gde/install/cli/install-cli-subcommands-enable.html).
+For installation please, copy the module code to app/code/Biotus/ProductQty directory
 
-## Extensibility
+Для установки модуля пожалуйста скопируйте код в директорию app/code/Biotus/ProductQty
 
-Extension developers can interact with the Biotus_ProductQty module. For more information about the Magento extension mechanism, see [Magento plug-ins](https://devdocs.magento.com/guides/v2.4/extension-dev-guide/plugins.html).
+## Layouts
 
-[The Magento dependency injection mechanism](https://devdocs.magento.com/guides/v2.4/extension-dev-guide/depend-inj.html) enables you to override the functionality of the Biotus_ProductQty module.
+The module adds block with AJAX request for the simple products salable qty on the PDP.
 
-### Layouts
+Модуль добавляет блок с аякс запросом для простых продуктов и отображает количество продукта на странице деталей продукта.
 
-The module introduces layout handles in the `view/adminhtml/layout` directory.
+## Preparation
 
-For more information about a layout in Magento 2, see the [Layout documentation](https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/layouts/layout-overview.html).
+To enable functionality, you should open the admin panel. Go to Stores > Configuration > Hyva Themes > Product Qty Block
+In General Tab set Enable to Yes. Set the TTL time for the block. The Varnish will cache the block for a specified amount of time
+By default the block is disabled and the ttl time is set to 3600 seconds.  Save the configuration and clear the cache.
 
-### UI components
-
-You can extend product and category updates using the UI components located in the `view/adminhtml/ui_component` directory.
-
-For information about a UI component in Magento 2, see [Overview of UI components](https://devdocs.magento.com/guides/v2.4/ui_comp_guide/bk-ui_comps.html).
+Для включения функционала Вам необходимо открыть панель администратора, перейти по пути Stores > Configuration > Hyva Themes > Product Qty Block.
+В разделе Основное включить функционал выбрав Enable в значение Yes. Для кеширования Варнишем установить в поле TTL 
+время жизни кеша в секундах. Сохранить настройки, очистить кеш Magento и перезагрузить страницу продукта.
 
 ## Additional information
 
-For information about significant changes in patch releases, see [Release information](https://devdocs.magento.com/guides/v2.4/release-notes/bk-release-notes.html).
+After the enabling the block, you can see the product qty block on the PDP for the simple products.
+By default, on the PDP the block sends the AJAX request every 30 seconds to upgrade the qty information, or the data
+will be upgraded with sectionData for the Hyva theme.
+
+После включения блока вы можете увидеть блок с доступным количеством продукта на странице информации о продукте.
+По умолчанию блок отправляет запросы для обновления данных о количестве продукта каждые 30 секунд при бездействии или 
+обновляет данные вместе с данными секций темы Хува.
+
